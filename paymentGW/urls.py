@@ -1,8 +1,11 @@
 
 from django.urls import path, include
-from . import views
+from . views import departmentApi, employeeApi
 
 urlpatterns = [
-    path('department', views.departmentApi),
-    path('department/<int:deptID>', views.departmentApi),
+    path('department', departmentApi),
+    path('department/<int:id>', departmentApi),
+
+    path('employee', employeeApi),
+    path('employee/<int:employeeID>', employeeApi),
 ]

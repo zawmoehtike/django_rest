@@ -9,7 +9,7 @@ from . serializers import DepartmentSerializer, EmployeeSerializer
 # Create your views here.
 
 @csrf_exempt
-def departmentApi(request, deptID = None):
+def departmentApi(request, id = None):
     if request.method == "GET":
         departmentsModel = Department.objects.all()
         departmentsSerializer = DepartmentSerializer(departmentsModel, many = True)
@@ -38,8 +38,48 @@ def departmentApi(request, deptID = None):
 
     elif request.method == "DELETE":
         try:
-            departmentModel = Department.objects.get(id=deptID)
+            departmentModel = Department.objects.get(id = id)
             departmentModel.delete()
             return JsonResponse("Department is deleted successfully", safe = False)
         except Exception as e:
             return JsonResponse(f"Error deleting department: {str(e)}", status = 500, safe = False)
+
+
+
+
+
+@csrf_exempt
+def employeeApi(request, employeeID = None):
+    if request.method == "GET":
+        employeesModel = Employee.objects.all()
+        employeesSerializer = EmployeeSerializer(employeesModel, many = True)
+        return JsonResponse(employeesSerializer.data, safe = False)
+    
+    elif request.method == "POST":
+        employeeRequest = JSONParser().parse(request)
+        employeeSerializer = EmployeeSerializer(data = employeeRequest)
+
+        if(employeeSerializer.is_valid()):
+            employeeSerializer.save()
+            return JsonResponse("Employee is added successfully", safe = False)
+        else:
+            return JsonResponse("Failed to add employee", safe = False)
+
+    elif request.method == "PUT":
+        employeeRequest = JSONParser().parse(request)
+        employeeModel = Employee.objects.get(id = employeeRequest['id'])
+        employeeSerializer = EmployeeSerializer(employeeModel, data = employeeRequest)
+
+        if(employeeSerializer.is_valid()):
+            employeeSerializer.save()
+            return JsonResponse("Employee is updated successfully", safe = False)
+        else:
+            return JsonResponse("Failed to update employee", safe = False)
+
+    elif request.method == "DELETE":
+        try:
+            employeeModel = Employee.objects.get(id = employeeID)
+            employeeModel.delete()
+            return JsonResponse("Employee is deleted successfully", safe = False)
+        except Exception as e:
+            return JsonResponse(f"Error deleting employee: {str(e)}", status = 500, safe = False)
