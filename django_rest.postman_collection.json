@@ -1,0 +1,124 @@
+{
+	"info": {
+		"_postman_id": "343b07e5-50b1-4b50-a23f-9eae304f3acc",
+		"name": "django_rest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6209807"
+	},
+	"item": [
+		{
+			"name": "departments",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/department",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"department"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "department",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/department/7",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"department",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "department",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"HR\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/department",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"department"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "department",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 6,\n    \"name\": \"Human Resource\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/department",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"department"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:8000",
+			"type": "string"
+		}
+	]
+}
