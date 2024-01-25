@@ -6,6 +6,8 @@ from rest_framework.parsers import JSONParser
 from . models import Department, Employee
 from . serializers import DepartmentSerializer, EmployeeSerializer
 
+from django.core.files.storage import default_storage
+
 # Create your views here.
 
 @csrf_exempt
@@ -83,3 +85,10 @@ def employeeApi(request, employeeID = None):
             return JsonResponse("Employee is deleted successfully", safe = False)
         except Exception as e:
             return JsonResponse(f"Error deleting employee: {str(e)}", status = 500, safe = False)
+        
+
+@csrf_exempt
+def saveProfilePhotoFile(request):
+    fileProfilePhoto = request.FILES['profile_photo']
+    fileNameProfilePhoto = default_storage.save(fileProfilePhoto.name, fileProfilePhoto)
+    return JsonResponse({ 'saved_profile_photo': fileNameProfilePhoto }, safe = False)

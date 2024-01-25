@@ -163,6 +163,34 @@
 					"response": []
 				},
 				{
+					"name": "upload employee profile photo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "profile_photo",
+									"type": "file",
+									"src": "/Users/zawmoehtike/Pictures/542019.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/employee/upload_profile_photo",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"employee",
+								"upload_profile_photo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "employee",
 					"request": {
 						"method": "PUT",
